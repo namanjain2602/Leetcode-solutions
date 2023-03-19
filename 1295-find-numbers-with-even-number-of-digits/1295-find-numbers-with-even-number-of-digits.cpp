@@ -1,4 +1,5 @@
-class Solution {
+//METHOD 1:BRUTE FORCE
+/*class Solution {
 public:
     int countdigit(int n)
     {
@@ -20,4 +21,18 @@ public:
         }
         return ans;
     }
+};*/
+
+//METHOD 2:
+class Solution {
+public:
+     int findNumbers(vector<int>& nums) {
+         int ans=0;
+         for(auto i:nums)
+         {
+             if((i>=10&&i<=99)||(i>=1000&&i<=9999)||i==100000)
+                ans++;
+         }
+                return ans;
+     }
 };
