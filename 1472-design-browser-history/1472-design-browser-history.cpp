@@ -1,41 +1,28 @@
 class BrowserHistory {
 public:
-    vector<string> URLsHistory;
-    int currURL, lastURL;
+    string history[105] = {};
+    int index = 0;
+    int end = 0;
     
-    BrowserHistory(string homepage) {
-        URLsHistory.push_back(homepage);
-        currURL = 0;
-        lastURL = 0;
+    BrowserHistory(string homepage) {   
+        history[index] = homepage;
     }
     
     void visit(string url) {
-        currURL++;
-        if (URLsHistory.size() > currURL) {
-          // We have enough space in our array to overwrite an old 'url' entry with new one. 
-            URLsHistory[currURL] = url;
-        }
-        else {
-            // We have to insert a new 'url' entry at the end.
-            URLsHistory.push_back(url);
-        }
-        // Now this will be out last url 
-        lastURL = currURL;
+        history[++index] = url;
+        end = index;
     }
     
     string back(int steps) {
-      // move currURL to the leftmost place
-        currURL = max(0, currURL - steps);
-        return URLsHistory[currURL];
+        index = max(index - steps, 0);
+        return history[index];
     }
     
     string forward(int steps) {
-      // move currURL to the rightmost place
-        currURL = min(lastURL, currURL + steps);
-        return URLsHistory[currURL];
+        index = min(index + steps, end);
+        return history[index];
     }
 };
-
 /**
  * Your BrowserHistory object will be instantiated and called as such:
  * BrowserHistory* obj = new BrowserHistory(homepage);
