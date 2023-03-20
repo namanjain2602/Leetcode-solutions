@@ -23,9 +23,12 @@ public:
             return dp[i][j];
       if(s1[i]==s2[j])
           return  0+solver(s1,s2,i-1,j-1,dp);
-      else
-          return dp[i][j]=1+min({solver(s1,s2,i-1,j-1,dp),solver(s1,s2,i,j-1,dp),solver(s1,s2,i-1,j,dp)}
-                       );
+      else{
+           int insert_ele=solver(s1,s2,i,j-1,dp);
+          int delete_ele=solver(s1,s2,i-1,j,dp);
+              int replace_ele=solver(s1,s2,i-1,j-1,dp);
+          return dp[i][j]=1+min({insert_ele,replace_ele,delete_ele});
+      }
     }
     int minDistance(string word1, string word2) {
         int n=word1.size();
