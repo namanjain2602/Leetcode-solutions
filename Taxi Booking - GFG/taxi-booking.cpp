@@ -10,17 +10,14 @@ using namespace std;
 
 class Solution{
 public:
-    int minimumTime(int N,int cur,vector<int> &pos,vector<int> &time){
-          int Ans = INT_MAX;
-        for(int i=0;i<pos.size();i++)
+    int minimumTime(int n,int cur,vector<int> &pos,vector<int> &time){
+        int ans=INT_MAX;
+        for(int i=0;i<n;i++)
         {
-           int val = (abs(pos[i]-cur))*(time[i]);
-           if(val<Ans)
-           {
-               Ans = val;
-           }
+            int t=abs(pos[i]-cur)*time[i];
+            ans=min(ans,t);
         }
-        return Ans;
+        return ans;
     }
 };
 
